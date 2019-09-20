@@ -5,9 +5,15 @@ const TaskCard = (props) => (
     <div className="task--card">
         <span>{props.task.name}</span>
             <div className="card--controls">
-            <Icon type="trash" />
-            <div className="div"> </div>
-            <Icon type="arrow" />
+            <div onClick={() => {props.deleteTask(props.task.id)}}>
+                <Icon type="trash" />
+            </div>
+            {props.task.status !== 2 && (<div className="div"> </div>)}
+            {props.task.status !== 2 && (
+                <div onClick={() => {props.changeStatus(props.task.id)}} >
+                    <Icon type="arrow" />
+                </div>
+            )}
         </div>
     </div>
 )
