@@ -88,6 +88,11 @@ body {
 	color: #fff;
 	font-size: 1.125rem;
 	padding: 1.18rem 1.5rem 1.2rem 1.5rem;
+	transition: ease .5s;
+	cursor: pointer;
+}
+.App__button:hover {
+	background: rgb(172, 83, 185);
 }
 
 
@@ -126,6 +131,11 @@ body {
 	justify-content: space-between;
 	padding: 1rem;
 	margin-bottom: 1rem;
+	transition: ease .5s;
+	cursor: pointer;
+}
+.task--card:hover {
+	transform: scale(1.1,1.1)
 }
 
 .task--card span {
