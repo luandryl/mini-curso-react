@@ -1,77 +1,183 @@
-# Step 2: Construção do Layout
+# Step 3: Componentização
 
-Nesta etapa iremos desenvolver a construção do HTML inicial de acordo com o Layout passado.
+Nesta etapa iremos dividir nosso aplicativo em multiplos componentes. O objetivo identificar as partes do código que se repetem e/ou que são partes funcionais que podem ser isoladas e divididos em [componentes atômicos]((!https://brasil.uxdesign.cc/atomicidade-espelhada-ui-e-front-falando-a-mesma-l%C3%ADngua-143551c59ab7)) 
 
-![Layout](Desktop.jpg)
+E como funciona essa tal de divisão entre componentes? Segue a imagem abaixo
 
-## HTML + CSS
+![Components](components.png)
 
-É importante notar como foi feita a construção do html+css, pensemos no ```html como caixas dentro de um espaço 2D``` onde vamos guardando coisas, estas caixas podem conter outras caixas dentro delas ou algum item (botão, input, texto, tabela, etc). Porém estas ```caixas não possuem estilo ```, ou seja, elas, junto de seu conteúdo vão sendo ```"empilhadas" quando são renderizadas pelos navegadores```.
+Temos 3 áreas e 5 componentes
 
-```Então entra o CSS``` que por definição é uma linguagem declarativa e sendo assim com esta linguagem é possivel ``` expressar logica sem escrever um controle de fluxo explicito ``` logo, seu objetivo é ir estilizando e controlando a forma de visualização das ```caixas ``` descritas acima de forma declarativa. 
+* App
+* Input dos dados
+* Lista de Tarefas
+* Card da Tarefa
+* Icones
 
-## Code Style
+## Componentes
 
-Existem algumas maneiras (design patterns) para criar organizar códigos HTML+CSS como por exemplo a ideia de separar da estrutura do visual/separar exibição de conteúdo bem como os estilos de escrita OOCSS, SMACSS, BEM, DRY CSS. Para entender melhor recomendo a leitura [DESTE](https://tableless.com.br/oocss-smacss-bem-dry-css-afinal-como-escrever-css/) e [DESTE](https://tableless.com.br/oocss-ou-css-do-jeito-certo/) artigo.
+É importânte notar que existem dois tipos de componentes: os componentes de classe ou ```class components``` e os componentes funcionais ou ```functional components ```. De modo muito simplificado nosso objetivo com os componentes funcionais é que eles não tenham muitas funcionalidades e principalmente esses componentes não tem estado. Um exemplo deste tipo de componente é o componente de Icones. 
 
-Para fins de simplificação neste projeto não foi utilizado nenhum padrão descrito acima, mas, contudo, porém, no entanto, entretanto, todavia, não deixei de criar/utilizar de um padrão mesmo que minimalista para apresentar a importância do uso de padrões e de manter o código todo com uma logica estruturada, com comentários e o mais limpo possível inclusive em relação a html e css
+Por outro lado os componentes de classe possuem estado e geralmente são eles que se encarregam de guardar e gerênciar a maior parte da lógica, tanto da aplicação quanto dos componentes de funções. Além disso eles também permitem o uso dos ```lifecicle methods``` (topico que sera discutido mais a frente). Um exemplo deste tipo de componente a classe App.
 
-Neste projeto então seguimos o seguinte padrão para a criação de HTML+CSS 
+Declaração de um componente funcional vs Componente de Classe
+```javascript
+/*
+    é necessário que o react esteja no contexto do componente.
+*/
+import React from 'react'
 
-``` html
+const MyComponent = (props) => {
+    // component markup
+}
+export default MyComponent
+```
+```javascript
+/*
+    é necessário que o react esteja no contexto do componente.
+*/
+import React, { Component } from 'react'
 
-<div class="ElementoRaiz utilitario">
-    <div class="ElementoRaiz--elementoFilho">
-        <input class="ElementoRaiz__input" type="text" />
-        <button class="ElementoRaiz__button"> ADD </button>
-    </div>
-</div>
+class MyComponent extends Component {
+    // component logic/markup/state
+}
 
+export default MyComponent
 ```
 
-``` css
+## Estado
+O estado são dados utilizados pelo componente esses dados podem ser strings, objetos, arrays, arrays de objetos, enfim qualquer tipo primitivo do javascript. O ```state``` de um componente é privado e completamente controlado pelo componente.
 
-.utilitario
+```javascript
 
-.ElementoRaiz {}
+import React, { Component } from 'react'
+/*
+    Forma 1:
+*/
+class Counter extends Component {
+    state = {
+    }
+}
+/*
+    Forma 2:
+*/
+class Counter extends Component {
+    constructor (props) {
+        super(props)
+        this.state = {
+        }
+    }
+}
 
-.ElementoRaiz--elementoFilho {}
+export default Counter
+```
+### Contator simples
+Vamos tentar criar um contador simples com o estado. A ideia é ter 2 botões um de soma + 1 e outro de subtrai - 1 
+segue o código.
+```javascript
 
+import React, { Component } from 'react'
+
+class Counter extends React.Component {
+  state = {
+    counter: 0
+  }
+  render() {
+    // pega o estado atual do contador
+    const { counter } = this.state
+    return (
+      <div>
+        // botão de -1
+        <button onClick={() => this.setState({counter: counter - 1})}>-1</button>
+        // mostra o valor atual do contator
+        <span> {counter} </span>
+        // botão de +1
+        <button onClick={() => this.setState({counter: counter + 1})}>+1</button>
+      </div>
+    );
+  }
+}
+export default Counter
 ```
 
-Ou ainda com um exemplo real de um trecho de código
-``` html
+Visite o live code do exemplo acima no [Codepen](!https://codepen.io/luandryl/pen/LYPXvBd) e tente mexer nas propriedades e ver o que acontece (tente criar um botão de multiplicar).
 
-<div className="App--task-input center">
-    <h1> Todo App </h1>
-    <div className="task-input--actions center">
-        <input className="App__input" type="text" placeholder="type something and press add" /> 
-        <button className="App__button" > Add </button>
-    </div>
-</div>
+## Propriedades
+
+Assim como o estado as propriedades são dados utilizados pelos componentes. A diferença é que as propriedades são passadas ao componenete geralmente seguindo a hierarquia de pai pra filho. Ou seja o componente que recebe a propriedade pode utiliza-lo.
+
+As props podem ser qualquer objeto primitivo do javascript e até mesmo funções. Também existem duas formas de utilizar as props.
+```javascript
+import React from 'react'
+
+const MyComponent = (props) => {
+    return (
+        <span> props.name </span>
+    )
+}
+export default MyComponent
 ```
-``` css
+Ou ainda
+```javascript
+import React, {Component} from 'react'
 
-.center {}
+class MyComponent extends Component {
+    constructor () {
+        super(props)
+    }
 
-.App--task-input {}
+    rreturn (
+        <span> this.props.name</span>
+    )
+}
 
-.task-input--actions {}
-
+export default MyComponent
 ```
 
-As classes CSS que não seguem este estilo de código são utilitários que complementam as classes CSS.
-Como App é o elemento "pai" de todos os outros os botões e inputs recebem ```App__``` como préfixo.
+### Contator simples
 
-## Icons Component
+Continuando com a ideia do contador vamos tentar refatora-lo para que ele use o conceito de propriedades.
+```javascript
+/*
+    Componente filho -> recebe e mostra o contador
+*/
+class ShowNumber extends React.Component {
+  render () {
+    return (
+      <span> {this.props.counter} </span>
+    )
+  }
+}
+/*
+    Componente pai -> guarda a logica do contador
+*/
+class Counter extends React.Component {
+  state = {
+    counter: 0
+  }
+  render() {
+    const { counter } = this.state
+    return (
+      <div>
+        <button onClick={() => this.setState({counter: counter - 1})}>-1</button>
+        // aqui é onde passamos o contador como propriedade
+        <ShowNumber counter={counter} />
+        <button onClick={() => this.setState({counter: counter + 1})}>+1</button>
+      </div>
+    );
+  }
+}
 
-Na próxima etapa iremos componentizar o nosso app e o objetivo era não utilizar compoentes nesta etapa. Porém criar um componente de icones que retorna um dos três tipos de icones utilizados no projeto foi a solução mais simples/legal para o contexto do projeto. Isso se deve porque temos apenas três icones e mostra a versatilidade que podemos criar componentes para diferentes tipos de processos dentro da criação de interfaces.
+React.render(<Counter />, document.getElementById('app'));
+```
 
-Este compoente se encontra dentro da pasta ``` ./assets/icons/Icons.js ```
- 
+Visite o exemplo no [Codepen](!https://codepen.io/luandryl/pen/LYPXvBd) e perceba como tudo esta funcionando, tente hackear esse exemplo e inserir um componente chamdo ```<ShowMult>```com o objetivo de mostrar somente os numeros multiplicados do exercicio anterior.
+
+## Próximo passo.
+
+Fizemos uma série de avanços aqui e começamos a entender um pouco mais do funcionamento do React porem nosso App ainda não tem funcionalidade nenhuma. Então nossa proxima tarefa será criar a funcionalidade de adicionar uma tarefa.
 
 #### Refs
-
-[Wiki CSS](https://en.wikipedia.org/wiki/Cascading_Style_Sheets)
-
-[Declarative Langs](https://en.wikipedia.org/wiki/Declarative_programming)
+* [Componentes Atômicos](!https://brasil.uxdesign.cc/atomicidade-espelhada-ui-e-front-falando-a-mesma-l%C3%ADngua-143551c59ab7)
+* [Statless/Class Components](!https://hackernoon.com/react-stateless-functional-components-nine-wins-you-might-have-overlooked-997b0d933dbc)
+* [Componentes Estados e Propriedades](!http://felipegalvao.com.br/blog/2018/09/24/aprenda-react-componentes-state-e-props/)
