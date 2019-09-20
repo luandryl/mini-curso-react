@@ -73,7 +73,7 @@ Este compoente se encontra dentro da pasta ``` ./assets/icons/Icons.js ```
 
 Nossa próxima tarefa nesta jornada sera dividir a interface em componentes com o objetivo de separar-los as responsabilidades funcionais de cada parte do código html para facilitar quando começarmos a escrever as fucionalidades do App. Além disso na proxima etapa veremos mais a fundo está questão de componentes e o que foi feito no componente de Icones ficará mais claro.
 
-pra agora vá no seu terminal e digite:
+Para prosseguir:
 
     $ git checkout step_3
 
