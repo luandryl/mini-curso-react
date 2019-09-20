@@ -3,36 +3,41 @@ import './App.css';
 import TaskCard from './components/task_card/TaskCard'
 import AppInput from './components/app_input/AppInput'
 import AppFooter from './components/app_footer/AppFooter'
-
+import id from 'uuid'
 
 class App extends Component {
 
 	state = {
-		list: [{
-			id: 0,
-			name: 'make todo',
+		list: []
+	}
+
+	saveTask = (task) => {
+		const { list } = this.state
+		const newTask = {
+			id: id(),
+			name: task,
 			status: 0
-		},{
-			id: 1,
-			name: 'learn git',
-			status: 0
-		},{
-			id: 3,
-			name: 'learn js',
-			status: 0
-		},{
-			id: 4,
-			name: 'Learn DS in C',
-			status: 1
-		},{
-			id: 5,
-			name: 'Learn React',
-			status: 1
-		},{
-			id: 6,
-			name: 'Homework',
-			status: 2
-		}]
+		}
+		this.setState({list: [ ...list, newTask]})
+	}
+
+	changeStatus = (id) => {
+		const { list } = this.state
+
+		const updateList = list.map(task => {
+			if (task.id === id) 
+				task.status = task.status + 1
+			return task
+		})
+		this.setState({list: updateList})
+	}
+
+	deleteTask = (id) => {
+		const { list } = this.state
+		const updateList = list.filter(task => {
+			return task.id !== id
+		})
+		this.setState({list: updateList})
 	}
 
 	render () {
@@ -40,15 +45,32 @@ class App extends Component {
 		const { list } = this.state
 		
 		const todoTaskList = list.map(task => {
-			return (task.status === 0) && (<TaskCard task={task} />)
+			return (task.status === 0) 
+				&& (<TaskCard 
+						deleteTask={this.deleteTask} 
+						changeStatus={this.changeStatus} 
+						key={task.id} 
+						task={task} 
+					/>)
 		})
 
 		const doingTaskList = list.map(task => {
-			return (task.status === 1) && (<TaskCard task={task} />)
+			return (task.status === 1) 
+				&& (<TaskCard 
+						deleteTask={this.deleteTask} 
+						changeStatus={this.changeStatus} 
+						key={task.id} 
+						task={task} 
+					/>)
 		})
 
 		const doneTaskList = list.map(task => {
-			return (task.status === 2) && (<TaskCard task={task} />)
+			return (task.status === 2) 
+				&& (<TaskCard 
+						deleteTask={this.deleteTask} 
+						key={task.id} 
+						task={task} 
+					/>)
 		})
 		
 		return (
@@ -56,7 +78,7 @@ class App extends Component {
 	
 				<div className="App--wrapper center">
 
-					<AppInput />
+					<AppInput returnTask={this.saveTask} />
 
 					<div className="App--task-list center">
 
