@@ -4,6 +4,7 @@ import TaskCard from './components/task_card/TaskCard'
 import AppInput from './components/app_input/AppInput'
 import AppFooter from './components/app_footer/AppFooter'
 import id from 'uuid'
+import LocalStorage from './services/LocalStorage'
 
 class App extends Component {
 
@@ -18,6 +19,7 @@ class App extends Component {
 			name: task,
 			status: 0
 		}
+		LocalStorage.save(newTask)
 		this.setState({list: [ ...list, newTask]})
 	}
 
@@ -38,6 +40,10 @@ class App extends Component {
 			return task.id !== id
 		})
 		this.setState({list: updateList})
+	}
+
+	componentWillMount () {
+		this.setState({list: LocalStorage.load()})
 	}
 
 	render () {
