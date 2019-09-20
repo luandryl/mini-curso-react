@@ -177,6 +177,9 @@ Visite o exemplo no [Codepen](!https://codepen.io/luandryl/pen/LYPXvBd) e perceb
 
 Fizemos uma série de avanços aqui e começamos a entender um pouco mais do funcionamento do React porem nosso App ainda não tem funcionalidade nenhuma. Então nossa proxima tarefa será criar a funcionalidade de adicionar uma tarefa.
 
+Para prosseguir
+
+    $ git checkout step_4
 #### Refs
 * [Componentes Atômicos](!https://brasil.uxdesign.cc/atomicidade-espelhada-ui-e-front-falando-a-mesma-l%C3%ADngua-143551c59ab7)
 * [Statless/Class Components](!https://hackernoon.com/react-stateless-functional-components-nine-wins-you-might-have-overlooked-997b0d933dbc)
