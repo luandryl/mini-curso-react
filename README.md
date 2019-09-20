@@ -68,10 +68,16 @@ Como App é o elemento "pai" de todos os outros os botões e inputs recebem ```A
 Na próxima etapa iremos componentizar o nosso app e o objetivo era não utilizar compoentes nesta etapa. Porém criar um componente de icones que retorna um dos três tipos de icones utilizados no projeto foi a solução mais simples/legal para o contexto do projeto. Isso se deve porque temos apenas três icones e mostra a versatilidade que podemos criar componentes para diferentes tipos de processos dentro da criação de interfaces.
 
 Este compoente se encontra dentro da pasta ``` ./assets/icons/Icons.js ```
- 
+
+## Próximo passo
+
+Nossa próxima tarefa nesta jornada sera dividir a interface em componentes com o objetivo de separar-los as responsabilidades funcionais de cada parte do código html para facilitar quando começarmos a escrever as fucionalidades do App. Além disso na proxima etapa veremos mais a fundo está questão de componentes e o que foi feito no componente de Icones ficará mais claro.
+
+pra agora vá no seu terminal e digite:
+
+    $ git checkout step_3
 
 #### Refs
 
-[Wiki CSS](https://en.wikipedia.org/wiki/Cascading_Style_Sheets)
-
-[Declarative Langs](https://en.wikipedia.org/wiki/Declarative_programming)
+* [Wiki CSS](https://en.wikipedia.org/wiki/Cascading_Style_Sheets)
+* [Declarative Langs](https://en.wikipedia.org/wiki/Declarative_programming)
