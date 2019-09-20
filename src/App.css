@@ -109,6 +109,7 @@ body {
 
 .task--list-wrapper {
 	margin-right: 5rem;
+	width: 310px;
 }
 
 .task--list-wrapper h1 {
