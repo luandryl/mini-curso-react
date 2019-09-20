@@ -1,4 +1,4 @@
-# Step 1: Construção do Layout
+# Step 2: Construção do Layout
 
 Nesta etapa iremos desenvolver a construção do HTML inicial de acordo com o Layout passado.
 
