@@ -13,37 +13,36 @@ class App extends Component {
 	}
 
 	saveTask = (task) => {
-		const { list } = this.state
 		const newTask = {
 			id: id(),
 			name: task,
 			status: 0
 		}
 		LocalStorage.save(newTask)
-		this.setState({list: [ ...list, newTask]})
+		this._loadData()
 	}
 
 	changeStatus = (id) => {
-		const { list } = this.state
-
-		const updateList = list.map(task => {
-			if (task.id === id) 
-				task.status = task.status + 1
-			return task
-		})
-		this.setState({list: updateList})
+		LocalStorage.change(id)
+		this._loadData()
 	}
 
 	deleteTask = (id) => {
-		const { list } = this.state
-		const updateList = list.filter(task => {
-			return task.id !== id
-		})
-		this.setState({list: updateList})
+		LocalStorage.remove(id)
+		this._loadData()
+	}
+
+	clearTaskList = () => {
+		LocalStorage.clear()
+		this._loadData()
+	}
+
+	_loadData () {
+		this.setState({list: LocalStorage.load()})
 	}
 
 	componentWillMount () {
-		this.setState({list: LocalStorage.load()})
+		this._loadData()
 	}
 
 	render () {
@@ -84,7 +83,7 @@ class App extends Component {
 	
 				<div className="App--wrapper center">
 
-					<AppInput returnTask={this.saveTask} />
+					<AppInput clear={this.clearTaskList} returnTask={this.saveTask} />
 
 					<div className="App--task-list center">
 
