@@ -13,13 +13,18 @@ class App extends Component {
 	}
 
 	saveTask = (task) => {
-		const newTask = {
-			id: id(),
-			name: task,
-			status: 0
+		if (task) {
+			const newTask = {
+				id: id(),
+				name: task,
+				status: 0
+			}
+			LocalStorage.save(newTask)
+			this._loadData()
+		} else {
+			alert('oops! write something')
 		}
-		LocalStorage.save(newTask)
-		this._loadData()
+		
 	}
 
 	changeStatus = (id) => {
