@@ -169,3 +169,9 @@ Vamos lá
 * [UUID Wiki](https://pt.wikipedia.org/wiki/Identificador_%C3%BAnico_universal)
 
 * [UUID Lib](https://www.npmjs.com/package/uuid)
+
+#### Anteriormente
+* [Step 0: Inicio da série](https://github.com/luandryl/mini-curso-react/tree/master)
+* [Step 1: Criação do projeto](https://github.com/luandryl/mini-curso-react/tree/step_1)
+* [Step 2: Construção do Layout](https://github.com/luandryl/mini-curso-react/tree/step_2)
+* [Step 3: Componentização](https://github.com/luandryl/mini-curso-react/tree/step_3)
