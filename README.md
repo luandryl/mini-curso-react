@@ -184,3 +184,9 @@ Para prosseguir
 * [Componentes Atômicos](https://brasil.uxdesign.cc/atomicidade-espelhada-ui-e-front-falando-a-mesma-l%C3%ADngua-143551c59ab7)
 * [Statless/Class Components](https://hackernoon.com/react-stateless-functional-components-nine-wins-you-might-have-overlooked-997b0d933dbc)
 * [Componentes Estados e Propriedades](http://felipegalvao.com.br/blog/2018/09/24/aprenda-react-componentes-state-e-props/)
+
+
+#### Anteriormente
+* [Step 0: Inicio da série](https://github.com/luandryl/mini-curso-react/tree/master)
+* [Step 1: Criação do projeto](https://github.com/luandryl/mini-curso-react/tree/step_1)
+* [Step 2: Construção do Layout](https://github.com/luandryl/mini-curso-react/tree/step_2)
