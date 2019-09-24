@@ -100,7 +100,7 @@ class Counter extends React.Component {
 export default Counter
 ```
 
-Visite o live code do exemplo acima no [Codepen](!https://codepen.io/luandryl/pen/LYPXvBd) e tente mexer nas propriedades e ver o que acontece (tente criar um botão de multiplicar).
+Visite o live code do exemplo acima no [Codepen](https://codepen.io/luandryl/pen/LYPXvBd) e tente mexer nas propriedades e ver o que acontece (tente criar um botão de multiplicar).
 
 ## Propriedades
 
@@ -171,7 +171,7 @@ class Counter extends React.Component {
 React.render(<Counter />, document.getElementById('app'));
 ```
 
-Visite o exemplo no [Codepen](!https://codepen.io/luandryl/pen/LYPXvBd) e perceba como tudo esta funcionando, tente hackear esse exemplo e inserir um componente chamdo ```<ShowMult>```com o objetivo de mostrar somente os numeros multiplicados do exercicio anterior.
+Visite o exemplo no [Codepen](https://codepen.io/luandryl/pen/LYPXvBd) e perceba como tudo esta funcionando, tente hackear esse exemplo e inserir um componente chamdo ```<ShowMult>```com o objetivo de mostrar somente os numeros multiplicados do exercicio anterior.
 
 ## Próximo passo.
 
@@ -181,6 +181,6 @@ Para prosseguir
 
     $ git checkout step_4
 #### Refs
-* [Componentes Atômicos](!https://brasil.uxdesign.cc/atomicidade-espelhada-ui-e-front-falando-a-mesma-l%C3%ADngua-143551c59ab7)
-* [Statless/Class Components](!https://hackernoon.com/react-stateless-functional-components-nine-wins-you-might-have-overlooked-997b0d933dbc)
-* [Componentes Estados e Propriedades](!http://felipegalvao.com.br/blog/2018/09/24/aprenda-react-componentes-state-e-props/)
+* [Componentes Atômicos](https://brasil.uxdesign.cc/atomicidade-espelhada-ui-e-front-falando-a-mesma-l%C3%ADngua-143551c59ab7)
+* [Statless/Class Components](https://hackernoon.com/react-stateless-functional-components-nine-wins-you-might-have-overlooked-997b0d933dbc)
+* [Componentes Estados e Propriedades](http://felipegalvao.com.br/blog/2018/09/24/aprenda-react-componentes-state-e-props/)
