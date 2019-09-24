@@ -181,7 +181,7 @@ Para prosseguir
 
     $ git checkout step_4
 #### Próximo
-* [Step 1: Criação do projeto](https://github.com/luandryl/mini-curso-react/tree/step_4)
+* [Step 4: Funcionalidades.](https://github.com/luandryl/mini-curso-react/tree/step_4)
 
 #### Refs
 * [Componentes Atômicos](https://brasil.uxdesign.cc/atomicidade-espelhada-ui-e-front-falando-a-mesma-l%C3%ADngua-143551c59ab7)
