@@ -78,7 +78,7 @@ Para prosseguir:
     $ git checkout step_3
 
 #### Próximo
-* [Step 1: Criação do projeto](https://github.com/luandryl/mini-curso-react/tree/step_3)
+* [Step 3: Componentização](https://github.com/luandryl/mini-curso-react/tree/step_3)
 
 #### Refs
 
