@@ -152,17 +152,6 @@ const save = (task) => {
     }
 }
 ```
-#### Spread Operator
-Este operador permite expandir arrays ou objetos iteráveis, esta é uma funcionalidade muito interessante da especificação `es6` bem como as `arrow functions`.
-
-```javascript
-let numbers = [1,2,3,4];
-console.log([numbers, ...[9,10,11]]);
-// output: 1,2,3,4,9,10,11
-```
-
-No exemplo acima estamos expandindo o array `numbers` com o conteúdo do array `[9,10,11]`. Esta é a mesma maneira que estamos expandindo o array `task_list` para adcionar ao seu final uma nova terefa.
-
 ### Remove
 Para removermos um item da lista de tarefas utilizamos o `array.filter` para retirar da lista tarefa que deve ser removida.
 ```javascript
