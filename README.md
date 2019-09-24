@@ -241,10 +241,8 @@ Qualquer duvida estou à disposição.
 
 # Voa Unect
 #### Refs
-*[Client-Side storage](!https://mattwest.design/choosing-the-best-client-side-storage-technology-for-your-project)
+* [Client-Side storage](https://mattwest.design/choosing-the-best-client-side-storage-technology-for-your-project)
 
-* [Local Storage](!https://tableless.com.br/guia-f%C3%A1cil-sobre-usar-localstorage-com-javascript/)
+* [Local Storage](https://tableless.com.br/guia-f%C3%A1cil-sobre-usar-localstorage-com-javascript/)
 
-* [Mozila LocalStorage](!https://developer.mozilla.org/en-US/docs/Web/API/Web_Storage_API/Using_the_Web_Storage_API)
-
-* [Spread Operator](!https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Operators/Spread_operator)
+* [Mozila LocalStorage](https://developer.mozilla.org/en-US/docs/Web/API/Web_Storage_API/Using_the_Web_Storage_API)
