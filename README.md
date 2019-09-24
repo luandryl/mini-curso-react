@@ -158,7 +158,7 @@ Vamos lá
     $ git checkout step_5
 
 #### Próximo
-* [Step 1: Criação do projeto](https://github.com/luandryl/mini-curso-react/tree/step_5)
+* [Step 5: LocalStorage Service](https://github.com/luandryl/mini-curso-react/tree/step_5)
 
 
 #### Refs
