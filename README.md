@@ -66,3 +66,6 @@ E por quê começar a pensar pela estrutura de dados? Bom
 Agora podemos avançar e começar o desenvolvimento.
 
     $ git checkout step_1 
+
+#### Próximo
+* [Step 1: Criação do projeto](https://github.com/luandryl/mini-curso-react/tree/step_1)
