@@ -16,12 +16,36 @@ A diferença entre essas duas ferramentas se da na forma em que persistem os dad
 Contudo temos algumas limitações ao usar estas duas ferramentas. Como quase tudo na computação são trade-offs aqui não seria diferente. Apesar de serem duas otimas formas de armazenar dados elas são limitadas ambas armazenam apenas 25mb e alem disso elas somente armazenam dados no formato chave => valor onde esse valor é um texto.
 Porém esta última limitação citada pode ser contornada.
 
-### GetItem, SetItem, RemoveItem, Clear.
-// todo write about this; 
+### GetItem, SetItem e RemoveItem.
+Os navegadores oferecem uma API segura para guardar pares de `chave=>valor` por meio dos métodos `GetItem, SetItem, RemoveItem, Clear `. O Código abaixo ilustra como podemos guardar objetos na localStorage do navegador.
+```javascript
+const newTask = {
+    id: '1',
+    name: 'make todo',
+    status: 0
+}
+localStorage.setItem('task_list', JSON.stringify(newTask))
+
+```
+
+Ao executar o código acima o resultado que teremos guardado no nosso navegador será igual o da imagem abaixo. Um ponto interessante de se notar é que conforme foi dito acima o localStorage apenas guarda pares de `chave=>valor` como strings, porém como podemos observar conseguimos guardar um objeto, como isso é possivel? Utilizamos a função `stringify` do objeto `JSON` para transformar o objeto `newTask` em string.
+Logo para recuperar e manipular esses dados deve-se fazer o parse de volta de string para objeto.
+
+![Local Storage](nav.png)
+
+O trecho de código abaixo recupera a lista de tarefas no localStorage do navegador, mostra na tela além de remover está lista do localStorage.
+```javascript
+
+const task_list = JSON.parse(localStorage.getItem('task_list'))
+console.log(task_list)
+
+// remove um item do localStorage.
+localStorage.removeItem('task_list')
+```
+
 
 ## LocalStorage Service
-
-Vamos começar a refatorar o código do ```step_4``` para atender ao nosso requisito funcional. Para isso vamos olhar para o trecho de código abaixo:
+Agora que entendemos o funcionamento basico o objeto `localStorage` vamos começar a refatorar o código do ```step_4``` para atender ao nosso ultimo requisito funcional. Para isso vamos olhar para o trecho de código abaixo:
 
 ```javascript
         state = {
@@ -61,11 +85,13 @@ Vamos começar a refatorar o código do ```step_4``` para atender ao nosso requi
 
 É aqui que encapsulamos toda a logica de manipulação do ```state``` de nosso aplicativo para que ele atenda nossos requisitos funcionais. Logo, nosso serviço deverá replicar esse comportamento do array ```list: [] ``` no localStorage. Porem iremos realizar algo um pouco mais sofisticado. Começamos criando o arquivo ```./services/LocalStorage.js```
 
+### Save Task
+
 Nossa primeira tarefa será refatorar a função ```saveTask```.
 
 ```javascript
 /*
-    função antiga
+    função antiga -> App.js
 */
 saveTask = (task) => {
     const { list } = this.state
@@ -77,7 +103,7 @@ saveTask = (task) => {
     this.setState({list: [ ...list, newTask]})
 }
 /*
-    nova função
+    nova função -> App.js
 */
 saveTask = (task) => {
     if (task) {
@@ -95,23 +121,25 @@ saveTask = (task) => {
 }
 ```
 Existem três pontos interessantes de se notar no código acima: 
-### LocalStorage.save(task)
+#### LocalStorage.save(task)
 Aqui definimos a forma que iremos trabalhar com o nosso serviço, ou seja, queremos um objeto que contenha funções à serem executadas pelo nosso componente.
 
-### this._loadData()
+#### this._loadData()
 Logo após qualquer alteração no `state` tinhamos que fazer o updade desta informação. Este método realizará isso para nós e sua implementação será discutida posteriormente.
 
-### if (task) {
+#### if (task) {
 
 Não haviamos feito nenhuma verificação se o input era vazio, logo, tarefas sem título podem ser adicionadas, o que não faze o menor sentido, jpa que tarefas vazias nçao podem ser concluidas. Agora isso foi corrigido.
 
 Eis o código do serviço que irá salvar no localStorage
 
 ```javascript
+// função q salva uma lista dentro do localStorage
 const saveList = (list) => {
     localStorage.setItem('task_list', JSON.stringify(list))
 }
 
+//função que cria um novo obj task
 const save = (task) => {
     if (!localStorage.getItem('task_list')) {
         let task_list = []
@@ -124,14 +152,110 @@ const save = (task) => {
     }
 }
 ```
+#### Spread Operator
+Este operador permite expandir arrays ou objetos iteráveis, esta é uma funcionalidade muito interessante da especificação `es6` bem como as `arrow functions`.
 
-//write about this and other methods
+```javascript
+let numbers = [1,2,3,4];
+console.log([numbers, ...[9,10,11]]);
+// output: 1,2,3,4,9,10,11
+```
+
+No exemplo acima estamos expandindo o array `numbers` com o conteúdo do array `[9,10,11]`. Esta é a mesma maneira que estamos expandindo o array `task_list` para adcionar ao seu final uma nova terefa.
+
+### Remove
+Para removermos um item da lista de tarefas utilizamos o `array.filter` para retirar da lista tarefa que deve ser removida.
+```javascript
+const remove = (id) => {
+    let task_list = getList()
+    if (task_list) {
+        let newList = task_list.filter(task => {
+            return task.id !== id
+        })
+        saveList(newList)
+    }
+    
+}
+```
+
+### Change Status
+De modo análogo a função de remover a troca de status. É interessante notar a diferença entre as funções `map`e `filter`
+```javascript
+const change = (id) => {
+    let task_list = getList()
+    const updateList = task_list.map(task => {
+        if (task.id === id) 
+            task.status = task.status + 1
+        return task
+    })
+    saveList(updateList)
+}
+```
+
+### App.js
+
+Agora que terminamos de escrever o serviço responsável por se comunicar com a localStorage vamos refatorar o código prensente em `App.js`
+
+```javascript
+
+	state = {
+		list: []
+	}
+
+	saveTask = (task) => {
+		if (task) {
+			const newTask = {
+				id: id(),
+				name: task,
+				status: 0
+			}
+			LocalStorage.save(newTask)
+			this._loadData()
+		} else {
+			alert('oops! write something')
+		}
+		
+	}
+
+	changeStatus = (id) => {
+		LocalStorage.change(id)
+		this._loadData()
+	}
+
+	deleteTask = (id) => {
+		LocalStorage.remove(id)
+		this._loadData()
+	}
+
+	clearTaskList = () => {
+		LocalStorage.clear()
+		this._loadData()
+	}
+
+	_loadData () {
+		this.setState({list: LocalStorage.load()})
+	}
+
+	componentWillMount () {
+		this._loadData()
+	}
+```
+Se visitarmos o navegador nosso app deve estar funcionando conforme planejamos.
 
 ## Fim da Jornada.
 
+Chegamos ao final de nossa jornada e com isso conversamos sobre os principios basicos de funcionamento do `React.js` e além disso conhecemos como funciona o processo de desenvolvimento frontend dentro da `unect jr`
 
+Com certeza passamos por muitos tópicos complexos para quem está sendo exposto a este tipo de informação pela primeira vez, contudo quero frizar para que não desanimem e para que estudem os codigos que foram passados. É de suma importância tambem que vocês tentem por conta própria desenvolver os passos explicados aqui sem copiar/colar codigo, para que entendam os princípios basicos tanto de javascript quanto do react.js.
 
+Qualquer duvida estou à disposição.
+
+# Voa Unect
 #### Refs
 * [Client-Side storage](!https://mattwest.design/choosing-the-best-client-side-storage-technology-for-your-project)
 
 * [Local Storage](!https://tableless.com.br/guia-f%C3%A1cil-sobre-usar-localstorage-com-javascript/)
+
+* [Mozila LocalStorage](!https://developer.mozilla.org/en-US/docs/Web/API/Web_Storage_API/Using_the_Web_Storage_API)
+
+* [Spread Operator](!https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Operators/Spread_operator)
