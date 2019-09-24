@@ -6,7 +6,7 @@ Helow word :)
 
 ### Refs
 #### Próximo
-* [Step 1: Criação do projeto](https://github.com/luandryl/mini-curso-react/tree/step_1)
+* [Step 2: Construção do Layout](https://github.com/luandryl/mini-curso-react/tree/step_2)
 
 ### Anteriormente
 * [Step 0: Inicio da série](https://github.com/luandryl/mini-curso-react/tree/master)
