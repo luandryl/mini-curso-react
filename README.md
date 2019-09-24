@@ -246,3 +246,10 @@ Qualquer duvida estou à disposição.
 * [Local Storage](https://tableless.com.br/guia-f%C3%A1cil-sobre-usar-localstorage-com-javascript/)
 
 * [Mozila LocalStorage](https://developer.mozilla.org/en-US/docs/Web/API/Web_Storage_API/Using_the_Web_Storage_API)
+
+#### Anteriormente
+* [Step 0: Inicio da série](https://github.com/luandryl/mini-curso-react/tree/master)
+* [Step 1: Criação do projeto](https://github.com/luandryl/mini-curso-react/tree/step_1)
+* [Step 2: Construção do Layout](https://github.com/luandryl/mini-curso-react/tree/step_2)
+* [Step 3: Componentização](https://github.com/luandryl/mini-curso-react/tree/step_3)
+* [Step 4: Funcionalidades.](https://github.com/luandryl/mini-curso-react/tree/step_4)
