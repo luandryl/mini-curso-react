@@ -77,6 +77,9 @@ Para prosseguir:
 
     $ git checkout step_3
 
+#### Próximo
+* [Step 1: Criação do projeto](https://github.com/luandryl/mini-curso-react/tree/step_2)
+
 #### Refs
 
 * [Wiki CSS](https://en.wikipedia.org/wiki/Cascading_Style_Sheets)
@@ -85,4 +88,3 @@ Para prosseguir:
 #### Anteriormente
 * [Step 0: Inicio da série](https://github.com/luandryl/mini-curso-react/tree/master)
 * [Step 1: Criação do projeto](https://github.com/luandryl/mini-curso-react/tree/step_1)
-* [Step 2: Construção do Layout](https://github.com/luandryl/mini-curso-react/tree/step_2)
