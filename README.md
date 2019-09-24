@@ -241,7 +241,7 @@ Qualquer duvida estou à disposição.
 
 # Voa Unect
 #### Refs
-* [Client-Side storage](!https://mattwest.design/choosing-the-best-client-side-storage-technology-for-your-project)
+*[Client-Side storage](!https://mattwest.design/choosing-the-best-client-side-storage-technology-for-your-project)
 
 * [Local Storage](!https://tableless.com.br/guia-f%C3%A1cil-sobre-usar-localstorage-com-javascript/)
 
